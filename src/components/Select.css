@@ -1,0 +1,15 @@
+.select {
+  margin-right: 10px;
+  padding: 10px;
+  padding-right: 30px;
+
+  cursor: pointer;
+
+  color: #fff;
+  border: 0;
+  border-bottom: 1px solid white;
+  border-radius: 0;
+  background-color: transparent;
+
+  appearance: none;
+}
