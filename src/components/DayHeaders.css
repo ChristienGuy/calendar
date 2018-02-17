@@ -1,0 +1,12 @@
+.day-headers {
+  display: flex;
+
+  color: #FFF;
+  background-color: #303F9F;
+}
+
+.day-header__day {
+  flex: 1;
+
+  padding: 15px;
+}

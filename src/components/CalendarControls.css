@@ -1,0 +1,43 @@
+.controls {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+
+  padding-right: 20px;
+  padding-left: 20px;
+
+  background-color: #303F9F;
+}
+
+.controls__prev-next {
+  display: flex;
+  align-items: center;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  text-decoration: none;
+
+  color: rgba(255, 255, 255, 0.3);
+
+  font-size: 0.8rem;
+}
+
+.icon {
+  width: 35px;
+}
+
+.icon-right {
+  transform: rotate(180deg);
+}
+
+.current-date {
+  margin-left: 20px;
+
+  font-size: 1.6rem;
+  color: #fff;
+}
