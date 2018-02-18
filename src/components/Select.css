@@ -1,7 +1,7 @@
 .select {
   margin-right: 10px;
   padding: 10px;
-  padding-right: 30px;
+  padding-right: 50px;
 
   cursor: pointer;
 
@@ -10,6 +10,9 @@
   border-bottom: 1px solid white;
   border-radius: 0;
   background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: 90%;
+  background-size: 10px;
 
   appearance: none;
 }
