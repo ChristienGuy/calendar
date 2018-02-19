@@ -66,6 +66,12 @@ class Calendar extends Component {
     history.push(`/${date.year()}/${date.format("MMM")}`);
   };
 
+  resetDate = () => {
+    const { history } = this.props;
+    const date = moment();
+    history.push(`/${date.year()}/${date.format("MMM")}`);
+  }
+
   render() {
     const { activeDate, dayNames, monthNames } = this.state;
     return (
@@ -73,8 +79,13 @@ class Calendar extends Component {
         <CalendarControls
           onYearChange={this.onYearSelect}
           onMonthChange={this.onMonthSelect}
-          activeDate={activeDate}
           monthNames={monthNames}
+          onReset={this.resetDate}
+          monthValue={activeDate.format("MMMM").toLowerCase()}
+          yearValue={activeDate.year()}
+          next={activeDate.clone().add(1, "M")}
+          prev={activeDate.clone().subtract(1, "M")}
+          currentDate={activeDate.format("MMM, YYYY")}
         />
         {[<DayHeaders days={dayNames} />, <Month activeMonth={activeDate} />]}
       </div>

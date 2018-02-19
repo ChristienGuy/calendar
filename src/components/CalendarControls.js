@@ -8,39 +8,34 @@ import "./CalendarControls.css";
 
 import { Select } from "./Select";
 export const CalendarControls = ({
-  activeDate,
   monthNames,
   onMonthChange,
-  onYearChange
+  onYearChange,
+  onReset,
+  yearValue,
+  monthValue,
+  next,
+  prev,
+  currentDate
 }) => {
   return (
     <div className="controls">
       <div className="controls__prev-next">
-        <NavigationButton
-          className="control  control--navigation"
-          prev
-          date={activeDate}
-        >
-          <img className="icon" src={chevron} alt="" />
-          prev
-        </NavigationButton>
-        <NavigationButton
-          className="control  control--navigation"
-          next
-          date={activeDate}
-        >
-          <img className="icon  icon-right" src={chevron} alt="" />
-          next
-        </NavigationButton>
-        <span className="current-date">{activeDate.format("MMMM, YYYY")}</span>
+        <Navigation
+          nextDate={next}
+          prevDate={prev}
+          className="control control--navigation"
+        />
+        <span className="current-date">{currentDate}</span>
+        <button className="button  button--reset" onClick={onReset}>Today</button>
       </div>
       <div className="controls__select">
         <MonthSelect
-          value={activeDate.format("MMMM").toLowerCase()}
+          value={monthValue}
           monthNames={monthNames}
           onChange={onMonthChange}
         />
-        <YearSelect value={activeDate.year()} onChange={onYearChange} />
+        <YearSelect value={yearValue} onChange={onYearChange} />
       </div>
     </div>
   );
@@ -68,19 +63,21 @@ const MonthSelect = ({ onChange, monthNames, value }) => {
   return <Select value={value} options={options} onChange={onChange} />;
 };
 
-const NavigationButton = ({ prev, next, date, children, className }) => {
-  let currentDate = date.clone();
-  if (prev) {
-    currentDate.subtract(1, "M");
-  } else {
-    currentDate.add(1, "M");
-  }
-  return (
-    <Link
-      className={className}
-      to={`/${currentDate.year()}/${currentDate.format("MMM")}`}
-    >
-      {children}
-    </Link>
-  );
-};
+const Navigation = ({ nextDate, prevDate, className }) => [
+  <Link
+    key={prevDate.toString()}
+    to={`/${prevDate.year()}/${prevDate.format("MMM")}`}
+    className={className}
+  >
+    <img className="icon" src={chevron} alt="" />
+    prev
+  </Link>,
+  <Link
+    key={nextDate.toString()}
+    to={`/${nextDate.year()}/${nextDate.format("MMM")}`}
+    className={className}
+  >
+    <img className="icon  icon-right" src={chevron} alt="" />
+    next
+  </Link>
+];
